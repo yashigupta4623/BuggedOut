@@ -19,7 +19,7 @@ function App() {
 
   async function reviewCode() {
     axios
-      .post("http://localhost:3000/ai/get-review", { code })
+      .post(`${import.meta.env.VITE_BASE_URL}/ai/get-review`, { code })
       .then((response) => {
         setReview(response.data);
       })
