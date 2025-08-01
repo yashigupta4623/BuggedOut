@@ -1,20 +1,21 @@
 require('dotenv').config();
 
 const express = require('express');
-const aiRoutes = require('./routes/ai.routes.js');
 const cors = require('cors');
+const aiRoutes = require('./routes/ai.routes.js');
+
 const app = express();
 
+// Middleware
 app.use(express.json());
-app.use(cors({
-    // origin: 'https://bugged-out.vercel.app/"
-  }));
+app.use(cors()); // For dev: allow all origins; tighten later in prod
 
-// testing route :
-app.get('/', (req, res) =>{
-    res.send("Hello World!")
-})
+// Test route
+app.get('/', (req, res) => {
+  res.send("Hello World!");
+});
 
-app.use('/ai', aiRoutes)
+// AI routes
+app.use('/ai', aiRoutes);
 
 module.exports = app;
